@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.web.bind.annotation.GetMapping;
 
 // public class KeycloakSecurityConfig extends WebSecurityConfigurerAdapter {
 // if u r using spring security
@@ -30,12 +31,11 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        /*http.csrf().disable().cors().and().headers().frameOptions().disable()
+        http.csrf().disable().cors().and().headers().frameOptions().disable()
                 .and()
-                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
-                .anyRequest().authenticated();
-        */
-        http.authorizeRequests().antMatchers("/suppliers/**").hasAuthority("ADMIN");
-
+                .authorizeRequests()//.antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/suppliers/**").hasAuthority("ROLE1");
+        //.and().authorizeRequests()
+        //        .antMatchers("/suppliers/**").hasAuthority("ADMIN");
     }
 }
